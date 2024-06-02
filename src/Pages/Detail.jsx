@@ -14,10 +14,10 @@ const navigate = useNavigate()
 
 // #### MESSAGE #######
 const [message, setMessage] = useState('')
-const [storeMessage,setStoreMessage] = useState(JSON.parse(localStorage.getItem("storeMessage")) || [])
+const [storeMessage,setStoreMessage] = useState([])
 const [showMessage,setShowMessage] = useState(false)
 const onMessage = () =>{
-  setStoreMessage([...storeMessage,message])
+  setStoreMessage([message])
   console.log("MESSAGE",storeMessage)
 navigate(`/detail/${id}`)
 }

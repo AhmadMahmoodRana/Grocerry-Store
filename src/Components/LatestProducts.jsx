@@ -39,7 +39,7 @@ const LatestProducts = () => {
         <img src={product.image} className="mt-10" width={130}  alt="" />
         </div>
        <h3 className="text-gray-700 font-semibold text-md mx-4 mt-5" >${product.price}.00</h3>
-       <h3 className="text-[#344648] mt-3 text-md mx-4 min-h-[60px]" >{product.name}</h3>
+       <h3 className="text-[#344648] mt-3 text-md mx-4 min-h-[60px] text-center font-semibold" >{product.name}</h3>
        <div className="w-full justify-center flex pb-3">
        <Link to={`/detail/${product.id}`}>
                   <button className="slide-button w-[200px]">See Details</button>

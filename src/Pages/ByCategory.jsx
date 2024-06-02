@@ -50,15 +50,13 @@ const ByCategory = () => {
         <img src={product.image} className="mt-10" width={160}  alt="" />
         </div>
        <h3 className="text-gray-700 font-semibold text-lg mx-4 mt-5" >${product.price}.00</h3>
-       <h3 className="text-[#39245f] mt-3 text-lg mx-4 min-h-[30px]" >{product.name}</h3>
+       <h3 className="text-[#39245f] mt-3 text-lg mx-4 min-h-[30px] text-center font-semibold" >{product.name}</h3>
        <div className="w-full justify-center mt-5 flex items-center gap-5">
                   {" "}
                  <Link to={`/detail/${product.id}`}>
                   <button className="slide-button w-[200px]">See Details</button>
                   </Link>
-                <div className="text-[30px] border-2 border-[#39245f] h-[45px] flex items-center px-1 text-[#39245f]">
-                 <MdDeleteForever onClick={() => handleDelete(product.$id)}  />
-                </div>
+              
               </div>
         </div>
     )

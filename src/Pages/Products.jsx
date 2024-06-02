@@ -153,7 +153,7 @@ const navigate = useNavigate()
               <h3 className="text-gray-700 font-semibold text-lg mx-4 mt-5">
                 ${product.price}.00
               </h3>
-              <h3 className="text-[#39245f] mt-3 text-lg mx-4 min-h-[30px]">
+              <h3 className="text-[#39245f] mt-3 text-lg mx-4 min-h-[30px] text-center font-semibold">
                 {product.name}
               </h3>
              
