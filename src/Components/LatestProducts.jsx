@@ -29,7 +29,7 @@ const LatestProducts = () => {
     };
   return (
     <div className='w-full min-h-[400px] h-auto pt-10 flex flex-col'>
-      <h1 className="text-[30px] font-bold text-[#39245f] mx-6">Latest Products</h1>
+      <h1 className="text-[30px] font-bold text-[#1b5e20] mx-6">Latest Products</h1>
 <div className="flex flex-wrap gap-4 justify-center pt-5 pb-5">
     {
         storeProduct.slice(0,5).map((product) =>{

@@ -83,7 +83,7 @@ const Blog = () => {
   };
   return (
     <div className="flex flex-col pt-10">
-     <h1 className="text-[#39245f] font-bold text-[30px] mx-6">BLOGS</h1> 
+     <h1 className="text-[#1b5e20] font-bold text-[30px] mx-6">BLOGS</h1> 
     <React.Fragment>
       <section
         className="splide mx-auto max-w-full px-5 pt-8"

@@ -29,7 +29,7 @@ const MostRatedProduct = () => {
     };
   return (
     <div className='w-full min-h-[400px] h-auto pt-10 flex flex-col'>
-      <h1 className="text-[30px] font-bold text-[#39245f] mx-6">Most Rated Products</h1>
+      <h1 className="text-[30px] font-bold text-[#1b5e20] mx-6">Most Rated Products</h1>
 <div className="flex gap-4 flex-wrap justify-center pt-5 pb-5">
 {
         storeProduct.slice(0,5).map((product) =>{

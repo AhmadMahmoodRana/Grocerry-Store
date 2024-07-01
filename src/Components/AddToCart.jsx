@@ -157,7 +157,7 @@ const AddToCart = ({ open, setOpen }) => {
                         <a
                           href="#"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                          onClick={() => items("")}
+                          onClick={() => emptyCart()}
                         >
                           Checkout
                         </a>
@@ -169,7 +169,7 @@ const AddToCart = ({ open, setOpen }) => {
                             <button
                               type="button"
                               className="font-medium text-indigo-600 hover:text-indigo-500"
-                              onClick={() => emptyCart()}
+                              
                             >
                               Continue Shopping
                               <span aria-hidden="true"> &rarr;</span>

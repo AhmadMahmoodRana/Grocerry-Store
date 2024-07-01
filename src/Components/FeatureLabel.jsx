@@ -2,12 +2,14 @@ import React from 'react'
 import { ImTruck } from "react-icons/im";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { PiPackageFill } from "react-icons/pi";
+import { FaIdeal } from "react-icons/fa6";
+import { RiCustomerService2Fill } from "react-icons/ri";
 const FeatureLabel = () => {
   return (
-    <div className='w-full flex justify-center bg-[#c9b8f4]'>
-    <div className='grid  grid-cols-5 justify-center w-[97%] h-[108px]'>
+    <div className='w-full flex justify-center bg-white mt-5 px-10'>
+    <div className='grid  grid-cols-5 justify-center w-[100%] h-[108px]'>
       <div className='flex items-center gap-5'>
-        <div className='text-[#634c9f] text-[50px]'>
+        <div className='text-green-500 text-[50px]'>
          <ImTruck />
         </div>
         <div className='flex flex-col '>
@@ -17,7 +19,7 @@ const FeatureLabel = () => {
 
       </div>
       <div className='flex items-center gap-5'>
-        <div className='text-[#634c9f] text-[50px]'>
+        <div className='text-green-500 text-[50px]'>
         <GiTakeMyMoney />
         </div>
         <div className='flex flex-col'>
@@ -27,7 +29,7 @@ const FeatureLabel = () => {
 
       </div>
       <div className='flex items-center gap-5'>
-        <div className='text-[#634c9f] text-[50px]'>
+        <div className='text-green-500 text-[50px]'>
         <PiPackageFill />
         </div>
         <div className='flex flex-col'>
@@ -37,8 +39,8 @@ const FeatureLabel = () => {
 
       </div>
       <div className='flex items-center gap-5'>
-        <div className='text-[#634c9f] '>
-        <img src="./src/assets/deal.png" width={50} alt="hello" />
+        <div className='text-green-500 text-[50px]'>
+        <FaIdeal />
        </div>
         <div className='flex flex-col'>
         <p className='text-black text-lg font-semibold'>Best Deal Offer</p>
@@ -47,8 +49,8 @@ const FeatureLabel = () => {
 
       </div>
       <div className='flex items-center gap-5'>
-        <div className='text-[#634c9f] text-[50px]'>
-        <img src="./src/assets/discount.png" width={50} alt="hello" />
+        <div className='text-green-500 text-[50px]'>
+        <RiCustomerService2Fill />
         </div>
         <div className='flex flex-col'>
         <p className=' text-black text-lg font-semibold'>Support 24/7</p>

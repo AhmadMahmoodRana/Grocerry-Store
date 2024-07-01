@@ -10,26 +10,24 @@ import {
 import { Query } from "appwrite";
 import Loader from "../Components/Loader";
 import { MdDeleteForever } from "react-icons/md";
-import { Link, useNavigate} from "react-router-dom";
-// ### ADD TO CART ###
-
-
- 
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Products = () => {
-  const [userInfo,setUserInfo] = useState()
-const navigate = useNavigate()
-  useEffect(() =>{
-      const infoPromise = account.get();
-  
-      infoPromise.then(function(res){
-          setUserInfo(res)
-      },function(err){
-          console.log(err)
-      })
-  },[])
- 
+  const [userInfo, setUserInfo] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const infoPromise = account.get();
+    infoPromise.then(
+      function (res) {
+        setUserInfo(res);
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
+  }, []);
+
   const [storeProduct, setStoreProduct] = useState([]);
   const [select, setSelect] = useState("All");
   const [select1, setSelect1] = useState("$updatedAt");
@@ -39,13 +37,9 @@ const navigate = useNavigate()
   const [hasNextPage, setHasNextPage] = useState(false);
   const [hasPrevPage, setHasPrevPage] = useState(false);
 
-
-
-
-// #############################
   useEffect(() => {
     getProduct();
-  }, [select, select1, update,]);
+  }, [select, select1, update]);
 
   useEffect(() => {
     setHasNextPage(storeProduct.length === 8); // Assuming 8 products per page
@@ -81,7 +75,7 @@ const navigate = useNavigate()
   };
 
   const handleDelete = async (product_id) => {
-    databases.deleteDocument(
+    await databases.deleteDocument(
       DATABASE_ID,
       COLLECTION_ID_ALLPRODUCTS,
       product_id
@@ -91,17 +85,21 @@ const navigate = useNavigate()
     );
   };
 
+  const filteredProducts = storeProduct.filter((val) =>
+    val.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="bg-[#ededed] w-full min-h-[89.3vh] flex flex-col items-center by-category pt-20 pb-5">
       <h1 className="text-2xl font-bold text-[#39245f] tracking-wider">
         All Products
       </h1>
-      <div className="w-[89%] bg-transparent h-[100px] flex  justify-between items-center">
+      <div className="w-[89%] bg-transparent h-[100px] flex justify-between items-center">
         <select
           id="categories"
           aria-placeholder="select"
           onChange={(e) => setSelect(e.target.value)}
-          className="h-10 outline-none bg-gray-50 border border-gray-300  text-sm  block w-[200px] p-2.5 "
+          className="h-10 outline-none bg-gray-50 border border-gray-300 text-sm block w-[200px] p-2.5"
         >
           <option value="All">All</option>
           <option value="Fruits">Fruits</option>
@@ -119,11 +117,10 @@ const navigate = useNavigate()
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search By Name"
         />
-
         <select
           id="sorting"
           onChange={(e) => setSelect1(e.target.value)}
-          className="h-10 outline-none bg-gray-50 border border-gray-300  text-sm  block w-[200px] p-2.5 "
+          className="h-10 outline-none bg-gray-50 border border-gray-300 text-sm block w-[200px] p-2.5"
         >
           <option value="$updatedAt">Default Sorting</option>
           <option value="rating">Sort by Rating</option>
@@ -132,15 +129,14 @@ const navigate = useNavigate()
       </div>
 
       {loader ? <Loader /> : null}
-      <div className="flex  min-w-[94%] flex-wrap gap-6 justify-center pt-10 pb-10">
-        {storeProduct
-          .filter((val) =>
-            val.name.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((product) => (
+      <div className="flex min-w-[94%] flex-wrap gap-6 justify-center pt-10 pb-10">
+        {filteredProducts.length === 0 ? (
+          <p>No product found</p>
+        ) : (
+          filteredProducts.map((product) => (
             <div
               key={uuidv4()}
-              className="bg-transparent border-2 border-[#39245f] flex flex-col min-w-[320px] max-w-[320px] min-h-[360px] pb-5 h-auto rounded-md"
+              className="bg-[#ededed] border-2 border-[#39245f] flex flex-col min-w-[320px] max-w-[320px] min-h-[360px] pb-5 h-auto rounded-md"
             >
               <div className="w-full flex justify-center flex-col items-center">
                 <img
@@ -150,26 +146,45 @@ const navigate = useNavigate()
                   alt="not load"
                 />
               </div>
-              <h3 className="text-gray-700 font-semibold text-lg mx-4 mt-5">
-                ${product.price}.00
-              </h3>
-              <h3 className="text-[#39245f] mt-3 text-lg mx-4 min-h-[30px] text-center font-semibold">
+              <div className="flex justify-between">
+                <h3 className="text-gray-700 font-semibold text-lg mx-4 mt-5">
+                  ${product.price}.00
+                </h3>
+                <h3 className="text-gray-700 font-semibold text-sm mx-4 mt-5">
+                 last update {product.$createdAt.slice(0, 10)}
+                </h3>
+              </div>
+
+              <h3 className="text-[#39245f] mt-3 text-xl mx-4 min-h-[30px] text-center font-semibold">
                 {product.name}
               </h3>
-             
+
               <div className="w-full justify-center mt-5 flex items-center gap-5">
-                  {" "}
-                 <Link to={`/detail/${product.id}`}>
+                <Link to={`/detail/${product.id}`}>
                   <button className="slide-button w-[200px]">See Details</button>
-                  </Link>
-                  {userInfo ? <>{userInfo.email == "techexpert10885@gmail.com" ?  <div className="text-[30px] border-2 border-[#39245f] h-[45px] flex items-center px-1 text-[#39245f]">
-                 <MdDeleteForever onClick={() => {handleDelete(product.$id), navigate("/products")}}  />
-                </div> : <div></div> }</> : ""}
-            
-               
+                </Link>
+                {userInfo ? (
+                  <>
+                    {userInfo.email === "techexpert10885@gmail.com" ? (
+                      <div className="text-[30px] border-2 border-[#39245f] h-[45px] flex items-center px-1 text-[#39245f]">
+                        <MdDeleteForever
+                          onClick={() => {
+                            handleDelete(product.$id);
+                            navigate("/products");
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div></div>
+                    )}
+                  </>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
       <div className="flex gap-4">
         <button
@@ -196,9 +211,3 @@ const navigate = useNavigate()
 };
 
 export default Products;
-
-
-
-
-
-
